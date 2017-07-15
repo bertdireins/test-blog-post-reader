@@ -1,0 +1,7 @@
+<nav>
+  <blog-posts-list (select)="selectPost($event)" [selectedPostId]="selectedPostId"></blog-posts-list>
+</nav>
+
+<section>
+  <blog-posts-detail [post]="selectedPost"></blog-posts-detail>
+</section>

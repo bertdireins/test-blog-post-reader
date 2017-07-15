@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let post of posts" (click)="selectPost(post)" [ngClass]="{selected: post.id === selectedPostId}">
+    <div>{{ post.title }}</div>
+    <a (click)="toggleFavorite($event, post.id)">
+        <i *ngIf="isFavorite(post.id)" class="material-icons">favorite</i>
+        <i *ngIf="!isFavorite(post.id)" class="material-icons">favorite_border</i>
+      </a>
+  </li>
+</ul>

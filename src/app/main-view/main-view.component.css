@@ -1,0 +1,24 @@
+:host {
+    display: flex;
+    flex-direction: row;
+}
+
+nav {
+    max-width: 350px;
+    min-width: 160px;
+    flex: 1;
+}
+
+@media (max-width: 480px) {
+    nav {
+        font-size: 12px;
+    }
+}
+
+section {
+    flex: 2;
+}
+
+section>* {
+    position: fixed;
+}

@@ -1,0 +1,4 @@
+<article *ngIf="post">
+  <h1>{{ post.title }}</h1>
+  <div [innerHtml]="post.body | nl2br"></div>
+</article>
