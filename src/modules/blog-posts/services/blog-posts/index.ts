@@ -13,14 +13,27 @@ export class BlogPostService {
 
     private serviceUrl: string;
 
+    private _posts: ReplaySubject<Array<BlogPost>>;
+    public readonly posts: Observable<Array<BlogPost>>;
+
     constructor(private http: Http) {
         this.serviceUrl = environment.endpoints.blogPostService;
+
+        this._posts = new ReplaySubject(1);
+        this.posts = this._posts.asObservable();
+
+        this._getPosts();
+    }
+
+    private _getPosts() {
+        this.http.get(`${this.serviceUrl}/posts`)
+            .map( (response) => response.json() )
+            .do( (posts) => this._posts.next(posts) )
+            .subscribe();
     }
 
     getPosts(): Observable<Array<BlogPost>> {
-        // return Observable.of(environment.posts);
-        return this.http.get(`${this.serviceUrl}/posts`)
-            .map((response) => response.json());
+        return this.posts;
     }
 
 }
