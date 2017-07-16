@@ -1,28 +1,60 @@
-# TestBlogPostReader
+# Exercise: Build a Blog Post Reader
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0.
+The blog post reader is scaffolded with [angular-cli](https://cli.angular.io/) and therefore based on Angular (4) and is Based on Webpack as build system, Karma and Jasmin for testing. The project is written in Typescript.
 
-## Development server
+The app receives a list of blog posts and displays them as a list with a detail view.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Usage
 
-## Code scaffolding
+----------
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+Make sure you have node installed  in the latest stable version (8) and angular-cli installed globally.
 
-## Build
+### Clone the repository
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+`git clone git@github.com:bertdireins/test-blog-post-reader.git`
 
-## Running unit tests
+### Install dependencies
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm install` in root directory of the cloned repository.
 
-## Running end-to-end tests
+### Running local dev server
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-## Further help
+### Running unit tests
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `ng test` to execute the unit tests via Karma.
+
+## Development decisions
+
+----------
+
+### Why the blog-posts module is placed in src/modules and not in src/app?
+
+The cause why i placed it in src/modules folder is a possible reuse of its components, services and models in other projects. It is in some way still tied to the angular-cli infrastructure (eg. by using the environment json files) but for future use it has not to be cut out of the app folder. In src/app are just components for assembling the views, wire components and routing.
+
+### Why the favorites service is working with post IDs and not posts?
+
+Lower memory footprint. If you would save the list you'd save the ids and retrieve the posts via API calls.
+
+## What should be done next?
+
+----------
+
+### Use sass and not CSS
+
+This can be changed easily and the sass-loader is already included in angular-cli.
+
+### Configure the API URL via provider factory
+
+The endpoint must be passed to the constructor of the service and configured when it is registered as provider in the module.
+
+### Frontend usability
+
+It is not really responsive and not really usable on small view ports.
+
+### Add IE11 support
+
+To activate the polyfills to work in IE11 and maybe IE10 `src/polyfills.ts` has to be edited. 
+
